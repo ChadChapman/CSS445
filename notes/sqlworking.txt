@@ -1,0 +1,15 @@
+sum total credit hours for each (all) employee, total number of hours for which each is registered for
+result: 3 columns:
+(first and last w/concat) Name		| (null=0)HoursCompleted 		| (null=0)HoursRegistered
+ordered by last name
+
+get all Completed classes, 
+sum hours for each employee as hours completed
+get all Registered classes, 
+sum hours for each employee as hours registered
+
+left theta join previous two tables with Employee on left, join on EmployeeId, project: fname, lname, hourscompleted, hoursregistered
+concat all first and last names as new column: Name
+for all employees with null fields after join, set nulls = 0
+
+order table by lname, project: name, hourscompleted, hours registered

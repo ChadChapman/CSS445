@@ -1,0 +1,77 @@
+1
+	a. Accounts attr = acctNo, type, balance
+		Customers attr = firstName, lastName, idno, account
+	b. Accounts(acctNo, type, balance)
+		Customers(firstName, lastName, idNo, account)
+	c. Accounts(12345, savings, 12000)
+		Customer(Robbie, Banks, 901-222, 12345)
+	d. Account -> Customers acctNo
+		Customers -> Acocunts account
+	e. Accounts (
+		acctNo, Integer, #key,
+		type, charField,
+		balance, Integer
+		)
+		Customers (
+		firstName, charField,
+		lastName, Charfield,
+		idNo, Integer,
+		account, Integer
+		)
+	f. 
+
+relational alg exercise:
+		#syntax here is shit
+1. 	a	PCspd3(m, s, r, h, p) = PC_sigma=(s>=3.00) AND _pi(m)
+			or can do Answer(model) - _pi(PCspd3, m attribute)
+			1005, 1006, 1013
+			
+ 	b	LPhd100(m,s,r,h,sc,p) = LP_sigma=(h>=100)		#theta join is for common attrs., but 															#could be a theta with R.m = Product.model
+		PRlp(m, m, t) = PR_sigma(t=Laptop)
+		LPPROD(ma,m,t,s,r,h,sc,p) = LPhd100 nat_join PRlp
+		then PROJECTION for the maker from LPPROD
+			or...
+			#join both first, list all attrs., as many tuples as in laptop: 
+				R(ma,m,t,lm,s,r,h,sc,p) = Product nat_join Laptop
+			S(all attrs. again...) = _sigma(R: hd>=100)
+			Answer(maker) = _pi((maker)S)
+			2001, 2005, 2007, 2008, 2010 = makers(E, A, B, F, G)
+				
+	c	#model no.and price of all from manf. B
+		P(m, md, t) = _sigma(P: m = "B")
+		R(m,md,t,ma,t,s,r,h,sc,p) = P nat_join w/ all Relations? on "model" 
+		
+		Answer(m,p)	= _pi(modelNo, price from R) 
+			
+			#in-class ans. used a Union
+################### in class ans. ########################3
+
+R(ma, m, p) = _pi(maker, model, price for PC natjoin Product)
+S(ma, m, p) = _pi(maker, model, price for Laptop natjoin Product)
+T(ma, m, p) = _pi(maker, model, price for Printer thetajoin(printer.model=product.model) Product)
+#now all have same attrs. - use set ops. now
+Answer(m,p) = _pi for m, p (_sigma for maker="B" on (R Un S Un T ))		
+#they are not related so joins won't work		 
+################################################################################
+
+	d #model nos of all color laser printers
+	R(m,c,t,p) = R_sigma=(color=True AND type=laser)
+	Answer(m) = R_pi(model)
+	models = 3003, 3007	
+
+	e #manfs. sell laptops but not pc
+		#first manfs. that sell laptops
+		R(m) = _pi for maker (R_sigma on "laptop")
+		S(m) = _pi for maker (R_sigma on "pc")
+	Answer(m) = R - S #use difference operator
+	a,b,e,f,g - a,b,c,d,e = f,g
+
+
+
+
+
+
+
+
+
+
