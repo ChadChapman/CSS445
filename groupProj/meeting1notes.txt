@@ -1,4 +1,34 @@
 MEETING 1
 
+DELIVERABLES:
+
+	Project proposal:	(3 points)
+
+	describe the problem:
+
+	how db driven application will solve it:
+
+	choices of technology:
+
+	describe 2 users of the system: (user story form)
+	
+		As a <user class>, I would like to <requirement>, so that <reason for story>
+		list stories in priority order, with top being first
+
+	must include CRUD functions
+
+	###########################################################################################################
+
+	Design Document:	(5 points)
+
+	technical requirements:
+
+		explainations of data requirement & user story(s) it supports
+
+	ER diagram link: (should include datatypes, keys, relationship types)
+
+	
+
+	
 
 

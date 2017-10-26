@@ -1,0 +1,117 @@
+#how many hours has each employee completed
+	#get all classes with status = completed
+	#get the employeeid field to a set from a bag
+	
+#how many hours has each employee registered for
+#concat the employee first and last name
+	#concat feature, return as Name
+#return all employees whether they have a class status or not
+	#left join Employee with SummedHours
+#change all 0 hours for either category to 0 from NULL
+	#can use IFNULL = 0
+#order results by employees last name
+	#order by Employee.LastName ASC
+#return columns for: Name, HoursCompleted, HoursRegistered 
+
+
+#returns sums of each employees classes completed
+SELECT EmployeeId AS Eid
+    ,Name, C.ClassId, Status
+    ,SUM(CreditHours)
+  FROM chadtc.Class C
+  INNER JOIN Transcript T
+  ON C.ClassId = T.ClassId
+  WHERE Status = 'COMPLETED'
+  GROUP BY Eid;
+
+SELECT EmployeeId AS Eid
+  ,Name, C.ClassId, Status
+  ,SUM(CreditHours) AS HoursRegistered
+FROM chadtc.Class C
+  INNER JOIN Transcript T
+    ON C.ClassId = T.ClassId
+WHERE Status = 'REGISTERED'
+GROUP BY Eid
+################################################################
+#returns all employee ids, status and hours for that status
+(SELECT EmployeeId AS Eid
+      ,Status
+      ,SUM(CreditHours) AS Hours
+    FROM chadtc.Class C
+    INNER JOIN Transcript T
+    ON C.ClassId = T.ClassId
+    WHERE Status = 'COMPLETED'
+    GROUP BY Eid)
+    UNION
+  (SELECT EmployeeId AS Eid
+    , Status
+    ,SUM(CreditHours) AS Hours
+  FROM chadtc.Class C
+    INNER JOIN Transcript T
+      ON C.ClassId = T.ClassId
+  WHERE Status = 'REGISTERED'
+  GROUP BY Eid);
+
+###################################################################
+# names and hours completed for all employees
+
+SELECT FirstName, LastName
+  ,CONCAT(FirstName, " ", LastName) AS Name
+  ,Eid, HoursCompleted
+  FROM Employee E
+LEFT OUTER JOIN (SELECT EmployeeId AS Eid
+      ,Status
+      ,SUM(CreditHours) AS HoursCompleted
+    FROM chadtc.Class C
+    INNER JOIN Transcript T
+    ON C.ClassId = T.ClassId
+    WHERE Status = 'COMPLETED'
+    GROUP BY Eid) AS HC
+ON E.EmployeeId = HC.Eid;
+
+SELECT FirstName, LastName
+  ,CONCAT(FirstName, " ", LastName) AS Name
+  ,Eid, IFNULL(HoursCompleted, 0) AS HoursCompleted
+  FROM Employee E
+LEFT OUTER JOIN (SELECT EmployeeId AS Eid
+      ,Status
+      ,SUM(CreditHours) AS HoursCompleted
+    FROM chadtc.Class C
+    INNER JOIN Transcript T
+    ON C.ClassId = T.ClassId
+    WHERE Status = 'COMPLETED'
+    GROUP BY Eid) AS HC
+ON E.EmployeeId = HC.Eid
+ORDER BY E.LastName ASC ;
+
+##########################################################################
+#solution for #8
+
+#the one below works
+SELECT CONCAT(FirstName, " ", LastName) AS Name
+  , IFNULL(HoursCompleted, 0) AS HoursCompleted
+  , IFNULL(HoursRegistered, 0) AS HoursRegistered
+FROM Employee E
+LEFT OUTER JOIN (
+	SELECT EmployeeId AS Eid
+		, Status
+    	, SUM(CreditHours) AS HoursCompleted
+    FROM chadtc.Class C
+    INNER JOIN Transcript T
+    ON C.ClassId = T.ClassId
+    WHERE Status = 'COMPLETED'
+    GROUP BY Eid) 
+	AS HC
+ON E.EmployeeId = HC.Eid
+LEFT OUTER JOIN (
+	SELECT EmployeeId
+    	, Name, Status
+    	, SUM(CreditHours) AS HoursRegistered
+    FROM chadtc.Class CR
+    INNER JOIN Transcript TR
+    ON CR.ClassId = TR.ClassId
+    WHERE Status = 'REGISTERED'
+    GROUP BY TR.EmployeeId) 
+	AS HR
+ON E.EmployeeId = HR.EmployeeId
+ORDER BY E.LastName ASC ;
