@@ -2,12 +2,12 @@ DROP TABLE IF EXISTS Movies;
 
 CREATE TABLE Movies (
 	title VARCHAR(100),
-	`year` INT,
+	`employer` INT,
 	length INT,
-	genre VARCHAR(10),
-	studioName VARCHAR(30),
+	term VARCHAR(10),
+	phone VARCHAR(30),
 	`producerC#` INT,
-	PRIMARY KEY(title, `year`)
+	PRIMARY KEY(title, `employer`)
 );
 
 INSERT INTO Movies VALUES
