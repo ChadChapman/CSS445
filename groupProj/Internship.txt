@@ -1,5 +1,3 @@
-
-
 /**
  * Represents an Internship opening listed by an Employer.
  * @author mmuppa
