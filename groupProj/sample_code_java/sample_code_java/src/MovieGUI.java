@@ -48,7 +48,7 @@ public class MovieGUI extends JFrame implements ActionListener, TableModelListen
 	 * Creates the frame and components and launches the GUI.
 	 */
 	public MovieGUI() {
-		super("Movie Store");
+		super("Internship Store");
 		
 		db = new MovieDB();
 		try
@@ -75,19 +75,19 @@ public class MovieGUI extends JFrame implements ActionListener, TableModelListen
 	}
     
 	/**
-	 * Creates panels for Movie list, search, add and adds the corresponding 
+	 * Creates panels for Internship list, search, add and adds the corresponding
 	 * components to each panel.
 	 */
 	private void createComponents()
 	{
 		pnlButtons = new JPanel();
-		btnList = new JButton("Movie List");
+		btnList = new JButton("Internship List");
 		btnList.addActionListener(this);
 		
-		btnSearch = new JButton("Movie Search");
+		btnSearch = new JButton("Internship Search");
 		btnSearch.addActionListener(this);
 		
-		btnAdd = new JButton("Add Movie");
+		btnAdd = new JButton("Add Internship");
 		btnAdd.addActionListener(this);
 		
 		pnlButtons.add(btnList);

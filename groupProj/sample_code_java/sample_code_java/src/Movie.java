@@ -32,7 +32,7 @@ public class Movie {
 	@Override
 	public String toString()
 	{
-		return "Movie [title=" + title + ", year=" + year + ", length="
+		return "Internship [title=" + title + ", year=" + year + ", length="
 				+ length + ", genre=" + genre + ", studioName=" + studioName
 				+ "]";
 	}
@@ -75,7 +75,7 @@ public class Movie {
 	public void setYear(int year)
 	{
 		if (year < 1920)
-			throw new IllegalArgumentException("Movie year cannot be before 1920.");
+			throw new IllegalArgumentException("Internship year cannot be before 1920.");
 		this.year = year;
 	}
 	
@@ -96,7 +96,7 @@ public class Movie {
 	public void setLength(int length)
 	{
 		if (length <= 0)
-			throw new IllegalArgumentException("Movie length cannot be negative or 0.");
+			throw new IllegalArgumentException("Internship length cannot be negative or 0.");
 		
 		this.length = length;
 	}
