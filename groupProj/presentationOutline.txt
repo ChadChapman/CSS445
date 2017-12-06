@@ -1,0 +1,14 @@
+Chad - ERD / UML
+
+Hui Ting - what she did and what she learned
+
+Keegan - talk briefly in video about what happening & (plan -> final product)
+
+Hanan - ideas for posting a new review
+
+Student - student updates creates a new student instead of altering the current student
+
+ 
+1 slide w/ERD
+
+
