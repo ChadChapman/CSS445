@@ -1,0 +1,38 @@
+aggregating - all attrs must be aggregated or grouped, MaraiDB will allow a fail on this - not good
+
+HAVING is much more concise than WHERE....
+
+UPDATE can change >1 cols. using a comma separted list
+
+always use  a SELECT before deleting, updating, etc
+
+CREATE, SELECT, UPDATE, DELETE, INSERT - final reqs.
+ERD vs. Schema diagram = abstract vs. specific tables (real world scenarios vs db implementation) ERD can have "unique" attributes but nothing is a pk.
+ERD has NO MTM tables!
+ERD = real life entities
+ERD/UML should be no pk (but unique is ok) no fk for sure, can do 0..1 | 0..*, etc or crow's feet notation.
+for ERD, use classic (not crow's feet)
+
+FDs: from left -> right is right is functionally dependent on left.  or left will
+always give one and only one record on the right.
+
+normalization - needs to be 3rd normal, no duplicative values (3rd normal fk, in class type normal)
+
+diagram example slide is a schema diagram, members should have two pk in top, but the fk is also still a fk, so PersonId would be PK, FK
+
+service bus vs. monolith 3-tier approach
+
+functions - not great to have a query in functions, then the query runs every time function is called
+
+exception handling with SQL states
+
+stored procedures - use these, research more, ex credit?
+
+assertions - all must be true at all times, otherwise transaction/action fails
+
+views to update records - not advisable
+
+
+
+
+
